@@ -9,19 +9,22 @@
         <!--Memorable Places-->
         <scene sceneID="s0m-cU-4a3">
             <objects>
-                <tableViewController id="sRA-rm-ck3" sceneMemberID="viewController">
+                <tableViewController id="sRA-rm-ck3" customClass="PlaceListController" customModule="MemorablePlaces3" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="EEC-2m-Nzt">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Df5-Pv-N3h">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="place" id="Df5-Pv-N3h">
                                 <rect key="frame" x="0.0" y="92" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Df5-Pv-N3h" id="MPb-bS-yDx">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="showPlace" id="IR5-mg-iwr"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -33,11 +36,14 @@
                     <navigationItem key="navigationItem" title="Memorable Places" id="9rS-EJ-nuJ">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="sv6-Va-Ard">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="show" id="xyh-dP-GsF"/>
+                                <segue destination="BYZ-38-t0r" kind="show" identifier="addPlace" id="xyh-dP-GsF"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="placeList" destination="EEC-2m-Nzt" id="Mf5-eN-xRa"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KL6-69-1hM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -108,4 +114,7 @@
             <point key="canvasLocation" x="713" y="130"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="xyh-dP-GsF"/>
+    </inferredMetricsTieBreakers>
 </document>
