@@ -9,13 +9,14 @@
 import UIKit
 import MapKit
 
+var places = [Dictionary<String, String>()]
+
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
     let locMgr      : CLLocationManager  = CLLocationManager()
     var locCount    : Int = 0
 
     @IBOutlet weak var map: MKMapView!
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
