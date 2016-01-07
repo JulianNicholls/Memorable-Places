@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B9299BEF1C3EA3EF00592745 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9299BEE1C3EA3EF00592745 /* CoreLocation.framework */; };
 		B92ECE241C3EA195004B03C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92ECE231C3EA195004B03C0 /* AppDelegate.swift */; };
 		B92ECE261C3EA195004B03C0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92ECE251C3EA195004B03C0 /* ViewController.swift */; };
 		B92ECE291C3EA195004B03C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B92ECE271C3EA195004B03C0 /* Main.storyboard */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B9299BEE1C3EA3EF00592745 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B92ECE201C3EA195004B03C0 /* MemorablePlaces3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemorablePlaces3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B92ECE231C3EA195004B03C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B92ECE251C3EA195004B03C0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -29,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9299BEF1C3EA3EF00592745 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +41,7 @@
 		B92ECE171C3EA195004B03C0 = {
 			isa = PBXGroup;
 			children = (
+				B9299BEE1C3EA3EF00592745 /* CoreLocation.framework */,
 				B92ECE221C3EA195004B03C0 /* MemorablePlaces3 */,
 				B92ECE211C3EA195004B03C0 /* Products */,
 			);
@@ -286,6 +290,7 @@
 				B92ECE341C3EA195004B03C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
