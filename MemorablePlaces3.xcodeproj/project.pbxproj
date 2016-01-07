@@ -13,6 +13,7 @@
 		B92ECE291C3EA195004B03C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B92ECE271C3EA195004B03C0 /* Main.storyboard */; };
 		B92ECE2B1C3EA195004B03C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B92ECE2A1C3EA195004B03C0 /* Assets.xcassets */; };
 		B92ECE2E1C3EA195004B03C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B92ECE2C1C3EA195004B03C0 /* LaunchScreen.storyboard */; };
+		B9E11D2B1C3EB274008BDC8F /* PlaceListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E11D2A1C3EB274008BDC8F /* PlaceListController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		B92ECE2A1C3EA195004B03C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B92ECE2D1C3EA195004B03C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B92ECE2F1C3EA195004B03C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B9E11D2A1C3EB274008BDC8F /* PlaceListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceListController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				B92ECE231C3EA195004B03C0 /* AppDelegate.swift */,
 				B92ECE251C3EA195004B03C0 /* ViewController.swift */,
 				B92ECE271C3EA195004B03C0 /* Main.storyboard */,
+				B9E11D2A1C3EB274008BDC8F /* PlaceListController.swift */,
 				B92ECE2A1C3EA195004B03C0 /* Assets.xcassets */,
 				B92ECE2C1C3EA195004B03C0 /* LaunchScreen.storyboard */,
 				B92ECE2F1C3EA195004B03C0 /* Info.plist */,
@@ -141,6 +144,7 @@
 			files = (
 				B92ECE261C3EA195004B03C0 /* ViewController.swift in Sources */,
 				B92ECE241C3EA195004B03C0 /* AppDelegate.swift in Sources */,
+				B9E11D2B1C3EB274008BDC8F /* PlaceListController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

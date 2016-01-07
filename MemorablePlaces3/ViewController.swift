@@ -9,8 +9,6 @@
 import UIKit
 import MapKit
 
-var places = [Dictionary<String, String>()]
-
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
     let locMgr      : CLLocationManager  = CLLocationManager()
@@ -20,8 +18,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print("activePlace: \(activePlace)")
+        
         locMgr.delegate = self
-        locMgr.desiredAccuracy = kCLLocationAccuracyBest
 
         let uilpgr = UILongPressGestureRecognizer(target: self, action: "addLocation:")
 
@@ -33,6 +32,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBAction func locatePressed(sender: AnyObject) {
         locCount = 0
 
+        locMgr.desiredAccuracy = kCLLocationAccuracyBest
         locMgr.requestWhenInUseAuthorization()
         locMgr.startUpdatingLocation()
     }
@@ -57,11 +57,13 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
 
     func addLocation(gr: UILongPressGestureRecognizer) {
-        let pTouch = gr.locationInView(self.map)
+        if gr.state == UIGestureRecognizerState.Began {
+            let pTouch = gr.locationInView(self.map)
 
-        let pMap : CLLocationCoordinate2D = map.convertPoint(pTouch, toCoordinateFromView: self.map)
+            let pMap : CLLocationCoordinate2D = map.convertPoint(pTouch, toCoordinateFromView: self.map)
 
-        setLocationPin(pMap)
+            setLocationPin(pMap)
+        }
     }
 
     func setLocationPin(loc2d: CLLocationCoordinate2D) {
@@ -73,28 +75,41 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         CLGeocoder().reverseGeocodeLocation(loc) {
             (placemarks, error) -> Void in
 
+            var title = ""
+
             if error == nil {
                 if let pm = placemarks![0] as CLPlacemark? {
-                    let subT  = pm.subThoroughfare != nil ? pm.subThoroughfare! : ""
+                    let subT  = pm.subThoroughfare != nil ? "\(pm.subThoroughfare!) " : ""
                     let mainT = pm.thoroughfare != nil ? "\(pm.thoroughfare!), " : ""
-                    let local = pm.locality != nil ? "\(pm.locality!), " : ""
-                    let admin = pm.administrativeArea!
-                    let code  = pm.postalCode!
+                    let local = pm.locality != nil ? pm.locality! : ""
 
-                    dispatch_async(dispatch_get_main_queue(), {
-                        ann.title = "\(subT) \(mainT)\(local)\(admin) \(code)"
-                        self.map.addAnnotation(ann)
-                    })
+                    if mainT != "" {
+                        title = "\(subT)\(mainT)\(local)"
+                    }
+                    else {
+                        let local = pm.locality != nil ? "\(pm.locality!), " : ""
+                        let admin = pm.administrativeArea!
+                        let code  = pm.postalCode!
+
+                        title = "\(local)\(admin) \(code)"
+                    }
                 }
             }
             else {
                 print(error?.localizedDescription)
-
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    ann.title = String(format: "%.3f, %.3f", arguments: [loc2d.latitude, loc2d.longitude])
-                    self.map.addAnnotation(ann)
-                })
             }
+
+            if title == "" {
+                title = "Added \(NSDate())"
+            }
+
+            dispatch_async(dispatch_get_main_queue(), {
+                ann.title = title
+                self.map.addAnnotation(ann)
+
+                let newLoc = ["address": title, "location": [loc2d.latitude, loc2d.longitude]]
+                places.append(newLoc)
+            })
         }
     }
 
