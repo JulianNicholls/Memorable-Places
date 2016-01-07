@@ -19,7 +19,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         super.viewDidLoad()
 
         print("activePlace: \(activePlace)")
-        
+        if activePlace >= 0 {
+            centreOnSelectedPlace()
+        }
+
         locMgr.delegate = self
 
         let uilpgr = UILongPressGestureRecognizer(target: self, action: "addLocation:")
@@ -54,6 +57,17 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         if ++locCount == 2 {
             locMgr.stopUpdatingLocation()
         }
+    }
+
+    func centreOnSelectedPlace() {
+        let lat  = places[activePlace]["location"]![0] as! Double
+        let long = places[activePlace]["location"]![1] as! Double
+
+        let location : CLLocationCoordinate2D   = CLLocationCoordinate2DMake(lat, long)
+        let span     : MKCoordinateSpan         = MKCoordinateSpanMake(0.01, 0.01)
+        let region   : MKCoordinateRegion       = MKCoordinateRegionMake(location, span)
+
+        self.map.setRegion(region, animated: true)
     }
 
     func addLocation(gr: UILongPressGestureRecognizer) {
