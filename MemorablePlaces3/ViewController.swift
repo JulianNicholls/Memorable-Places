@@ -18,12 +18,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print("activePlace: \(activePlace)")
+        locMgr.delegate = self
+
         if activePlace >= 0 {
             centreOnSelectedPlace()
         }
-
-        locMgr.delegate = self
 
         let uilpgr = UILongPressGestureRecognizer(target: self, action: "addLocation:")
 
@@ -68,6 +67,12 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         let region   : MKCoordinateRegion       = MKCoordinateRegionMake(location, span)
 
         self.map.setRegion(region, animated: true)
+
+        let ann = MKPointAnnotation()
+
+        ann.coordinate = location
+        ann.title = places[activePlace]["address"] as? String
+        self.map.addAnnotation(ann)
     }
 
     func addLocation(gr: UILongPressGestureRecognizer) {
@@ -93,15 +98,15 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 
             if error == nil {
                 if let pm = placemarks![0] as CLPlacemark? {
+                    let local = pm.locality != nil ? "\(pm.locality!), " : ""
+
                     let subT  = pm.subThoroughfare != nil ? "\(pm.subThoroughfare!) " : ""
                     let mainT = pm.thoroughfare != nil ? "\(pm.thoroughfare!), " : ""
-                    let local = pm.locality != nil ? pm.locality! : ""
 
                     if mainT != "" {
                         title = "\(subT)\(mainT)\(local)"
                     }
                     else {
-                        let local = pm.locality != nil ? "\(pm.locality!), " : ""
                         let admin = pm.administrativeArea!
                         let code  = pm.postalCode!
 
