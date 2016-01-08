@@ -8,7 +8,7 @@
 
 import UIKit
 
-var places = [NSDictionary]()
+var places = [NSDictionary]()   // Empty, I'm not sure why that was difficult before
 
 var activePlace = -1
 
@@ -86,7 +86,7 @@ class PlaceListController: UITableViewController {
     */
 
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool) {
         updatePlaces()
     }
 
@@ -94,6 +94,7 @@ class PlaceListController: UITableViewController {
         placeList.reloadData()
         NSUserDefaults.standardUserDefaults().setObject(places, forKey: PSKEY)
     }
+
 
 
     override func didReceiveMemoryWarning() {
